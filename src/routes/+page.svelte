@@ -8,12 +8,20 @@
 	const disponible = results.filter(({ Vendido }) => Vendido == 'FALSE');
 	console.log(results);
 
-	function createLink(number: string) {
+	function createLink(number: number) {
 		const message = `¡Quiero el ${number}!`;
-		return `https://api.whatsapp.com/send?phone=5491157553203&text=${encodeURIComponent(message)}`;
+		let phone: string;
+
+		if (number >= 1 && number <=150){
+			phone = "5491157553203";
+		}else{
+			phone = "5491162957756";
+		}
+
+		return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 	}
 
-	function createOnClick(number: string) {
+	function createOnClick(number: number) {
 		const URL = createLink(number);
 		return function onClick() {
 			window.open(URL, '_blank');
@@ -27,7 +35,7 @@
 	<ul class="disponibles">
 		{#each disponible as row, index}
 			<li>
-				<button on:click={createOnClick(row['Número'].toString())}>
+				<button on:click={createOnClick(Number(row['Número']))}>
 					{row['Número']}
 				</button>
 			</li>
@@ -42,7 +50,7 @@
 		{/each}
 	</ul>
 </section>
-
+<p class="copy">&copy; página creada por <a href="https://www.linkedin.com/in/nahuel-rabey-260857180/">Nahuel Rabey</a></p>
 <style>
 	section {
 		font-family: sans-serif;
@@ -100,5 +108,19 @@
 		margin: 0px;
 		border-radius: 5px;
 		background-color: #2f2f2f0f;
+	}
+
+	.copy {
+		text-align: center;
+		font-size: smaller;
+		font-family: sans-serif;
+	}
+	.copy a {
+		color:rgb(0, 0, 0);
+		font-weight: bold;
+		text-decoration: none;
+	}
+	.copy a:visited{
+		color:rgb(0, 0, 0);
 	}
 </style>
