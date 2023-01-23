@@ -10,7 +10,7 @@
 
 	function createLink(number: string) {
 		const message = `¡Quiero el ${number}!`;
-		return `https://api.whatsapp.com/send?phone=5491132134807&text=${encodeURIComponent(message)}`;
+		return `https://api.whatsapp.com/send?phone=5491157553203&text=${encodeURIComponent(message)}`;
 	}
 
 	function createOnClick(number: string) {
